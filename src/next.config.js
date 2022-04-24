@@ -1,46 +1,56 @@
-// const withMDX = require('@next/mdx')({
-//   extension: /\.mdx?$/,
-//   options: {
-//     remarkPlugins: [],
-//     rehypePlugins: []
-//     // If you use `MDXProvider`, uncomment the following line.
-//     // providerImportSource: "@mdx-js/react",
-//   }
-// });
-// module.exports = widthMDX({
-//   basePath: '/docs'
-//   // Append the default value with md extensions
-//   // pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
-// });
-
-module.export = {
-  basePath: '/docs',
-  assetPrefix: '/docs/'
-  // 'process.env.BACKEND_URL': 'https://www.azsoftware.org/docs'
-};
-
 module.exports = {
-  // Prefer loading of ES Modules over CommonJS
-  experimental: { esmExternals: true },
-  // Support MDX files as pages:
-  pageExtensions: ['md', 'mdx', 'tsx', 'ts', 'jsx', 'js'],
-  // Support loading `.md`, `.mdx`:
-  webpack(config, options) {
-    config.module.rules.push({
-      test: /\.mdx?$/,
-      use: [
-        // The default `babel-loader` used by Next:
-        options.defaultLoaders.babel,
-        {
-          loader: '@mdx-js/loader',
-          /** @type {import('@mdx-js/loader').Options} */
-          options: {
-            /* jsxImportSource: …, otherOptions… */
-          }
-        }
-      ]
-    });
-
-    return config;
-  }
+  // Uncomment the line below to enable basePath, pages and
+  // redirects will then have a path prefix (`/app` in this case)
+  //
+  // basePath: '/app',
+  // distDir: 'build',
+  poweredByHeader: false
+  // async redirects() {
+  //   return [
+  //     // {
+  //     //   source: '/status',
+  //     //   // target: '_blank',
+  //     //   destination: 'https://dns.azsoftware.org',
+  //     //   permanent: true,
+  //     // },
+  //     // {
+  //     //   source: '/product',
+  //     //   destination: '/products',
+  //     //   permanent: true,
+  //     // },
+  //     // {
+  //     //   source: '/downloads',
+  //     //   destination: '/download',
+  //     //   permanent: true,
+  //     // },
+  //     // {
+  //     //   source: '/blog',
+  //     //   destination: 'https://medium.com/@az_software',
+  //     //   permanent: true,
+  //     // },
+  //     // {
+  //     //   source: '/docs',
+  //     //   destination: 'https://docs.azsoftware.eu.org',
+  //     //   permanent: true,
+  //     // }
+  //     // // Path Matching - will match `/old-blog/a`, but not `/old-blog/a/b`
+  //     // {
+  //     //   source: '/ref/:slug',
+  //     //   destination: '/news/:slug',
+  //     //   permanent: false,
+  //     // },
+  //     // // Wildcard Path Matching - will match `/blog/a` and `/blog/a/b`
+  //     // {
+  //     //   source: '/blog/:slug*',
+  //     //   destination: '/news/:slug*',
+  //     //   permanent: false,
+  //     // },
+  //     // // Regex Path Matching - The regex below will match `/post/123` but not `/post/abc`
+  //     // {
+  //     //   source: '/post/:slug(\\d{1,})',
+  //     //   destination: '/news/:slug',
+  //     //   permanent: false,
+  //     // },
+  //   ]
+  // },
 };

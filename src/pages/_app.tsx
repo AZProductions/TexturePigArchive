@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
-import { GeistProvider, CssBaseline, useKeyboard, KeyCode, KeyMod, Keyboard, useTheme } from '@geist-ui/core';
+import { GeistProvider, CssBaseline } from '@geist-ui/core';
 import { PrefersContext, themes, ThemeType } from '@/lib/use-prefers';
 import Menu from '@/components/navigation/menu';
 import Footer from '@/components/navigation/footer';
@@ -10,12 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/nav.css';
 import '../styles/nav2.css';
 import '../styles/footer.css';
-import { MDXProvider } from '@mdx-js/react';
-import Sidemenu from '@/components/navigation/sidemenu';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const theme = useTheme();
-  const accent1 = theme.palette.accents_1;
   const [themeType, setThemeType] = useState<ThemeType>('dark');
   useEffect(() => {
     document.documentElement.removeAttribute('style');
@@ -36,17 +32,22 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="#000000" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-        <title>AZ Software - Writing the future.</title>
+        <meta property="og:type" content="website"></meta>
+        <meta property="og:url" content="https://texturepig.com/" />
+        <title>TexturePig - The place to get Texture Packs and Artwork for Minecraft and other Games.</title>
         <meta
           name="twitter:description"
-          content="AZ Software is one of the world leading open-source fully transparent software companies. It's main focus is Privacy and Security. Read more.."
+          content="TexturePig - The place to get Texture Packs and Artwork for Minecraft and other Games. Read more.."
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AZ Software - Writing The Future." />
+        <meta
+          name="twitter:title"
+          content="TexturePig - The place to get Texture Packs and Artwork for Minecraft and other Games."
+        />
         <meta name="robots" content="index, follow" />
         <meta
           name="description"
-          content="AZ Software is one of the world leading open-source fully transparent software companies. It's main focus is Privacy and Security. The most popular product from AZ Software is Kookaburra on Github.com/AZProductions"
+          content="TexturePig - The place to get Texture Packs and Artwork for Minecraft and other Games"
         />
         <link rel="icon" type="image/svg+xml" sizes="400x400" href="assets/logo/render.svg" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -60,16 +61,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <CssBaseline />
         <PrefersContext.Provider value={{ themeType, switchTheme }}>
           <Menu />
-          <div className="content-box">
-            <div className="sidemenu sidemenucard">
-              <Sidemenu />
-            </div>
-            <div className="content">
-              <MDXProvider>
-                <Component {...pageProps} />
-              </MDXProvider>
-            </div>
-          </div>
+          <Component {...pageProps} />
           <Footer />
         </PrefersContext.Provider>
       </GeistProvider>
@@ -79,32 +71,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
       ></script>
-      <script src="https://www.azsoftware.org/cdn/bs-init.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-      <script src="https://www.azsoftware.org/cdn/increment.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-      <style jsx>{`
-        .content-box {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          box-sizing: border-box;
-        }
-        .content {
-          min-height: calc(100vh - 108px);
-          max-width: 782pt;
-          margin: 24px 20px;
-          padding: 5 15px;
-        }
-        .sidemenu {
-          margin-right: 18%;
-        }
-        .sidemenucard {
-          background: ${accent1};
-        }
-      `}</style>
     </>
   );
 };
